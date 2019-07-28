@@ -14,7 +14,7 @@ namespace ProjectToIsracard.Functions
     {
         public static Repository GetGitHubRepositories(string search)
         {
-            if (search != null && search!="")
+            if (search != null && search != "")
             {
 
                 string route = "https://api.github.com/search/repositories?q=" + search;
@@ -26,17 +26,9 @@ namespace ProjectToIsracard.Functions
                 httpWReq.Proxy = null;
                 httpWReq.ContentType = "application/json";
                 httpWReq.UserAgent = "repositories_search";
-                // httpWReq.Method = "GET";
-                //httpWReq = HttpLogic.SetTokenAuthoriztionHeader(httpWReq, Settings.getEbayApiKeys());
-                //httpWReq.Headers.Add("X-EBAY-C-MARKETPLACE-ID", "EBAY-US");
-
                 HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-
                 string parsedResponse = ParseResponse(response);
                 Repository res = new JavaScriptSerializer().Deserialize<Repository>(parsedResponse);
-
-
-
                 return res;
             }
             return null;

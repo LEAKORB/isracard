@@ -36,9 +36,9 @@ namespace ProjectToIsracard.Controllers
 
             return View(bookmarkedRepositories);
         }
-        public void AddToSession(string name , string avatar_url)
+        public void AddToSession(int id,string name , string avatar_url)
         {
-            Item item = new Item() { name= name ,owner=new Owner() {avatar_url= avatar_url } };
+            Item item = new Item() {id=id, name= name ,owner=new Owner() {avatar_url= avatar_url } };
            
             List<Item> items = new List<Item>();
             List<Item> bookmarkedRepositories = (List<Item>)Session["bookmarkedRepositories"];
@@ -48,7 +48,7 @@ namespace ProjectToIsracard.Controllers
             }
             foreach (var i in bookmarkedRepositories)
             {
-                if (i.name==item.name)
+                if (i.id==item.id)
                 {
                     return;
                 }
