@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ProjectToIsracard.Models.Item>
+<h2> bookmarked repositories</h2>
+<ul class="w3-ul w3-card-4">
+
+    @if (Model!=null)
+    {
+
+   
+    foreach (var item in Model)
+    {
+
+
+        <li class="w3-bar">
+
+
+            <img src=@item.owner.avatar_url class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+            <div class="w3-bar-item">
+                <span class="w3-large">@item.name</span><br>
+            </div>
+        </li>
+
+        }
+    }
+</ul>

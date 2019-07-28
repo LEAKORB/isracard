@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <br/>
+    <input type="text" class="form-control" placeholder="Enter repository for search" id="search" />
+    <button value="search" onclick="getRepositoriesList()" class="btn-search btn "><i class="fa fa-search"></i></button>
+</div>
+<div id="PartialRepositoriesList"></div>
+
+
+<script type="text/javascript">
+    function getRepositoriesList() {
+        var s = $('#search').val();
+
+        $.ajax({
+            type: "GET",
+            url: '/Home/PartialRepositoriesList',
+            contentType: "application/json; charset=utf-8",
+            data: { "s": s },
+            datatype: "json",
+            success: function (data) {
+                $('#PartialRepositoriesList').html(data);
+
+            },
+            error: function () {
+            }
+        });
+
+
+    }
+</script>

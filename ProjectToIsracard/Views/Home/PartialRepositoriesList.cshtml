@@ -1,0 +1,72 @@
+﻿@model ProjectToIsracard.Models.Repository
+
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    @if (Model != null)
+    {
+
+        if (Model.items.Count > 0)
+        {
+            
+                <div class="w3-container">
+                    <h2>repositories</h2>
+                    <ul class="w3-ul w3-card-4">
+
+
+                        @foreach (var item in Model.items)
+                        {
+
+
+                            <li class="w3-bar">
+
+
+                                <button value="click" onclick="addToSession(this,'@item.name','@item.owner.avatar_url');this.parentElement.style.backgroundColor ='beige';" class="w3-bar-item   w3-xlarge w3-right btn">bookmark</button>
+
+                                <img src=@item.owner.avatar_url class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                                <div class="w3-bar-item">
+                                    <span class="w3-large">@item.name</span><br>
+                                </div>
+                            </li>
+
+                        }
+
+                    </ul>
+                </div>
+            }
+
+            else
+            {
+                <h2>No results</h2>
+            }
+        }
+    
+
+
+
+
+</body>
+</html>
+<script type="text/javascript">
+    function addToSession(e, name, avatar_url) {
+        //e.style.display = 'none';
+
+    $.ajax(
+    {
+        type: "POST",
+        page: 1,
+        rp: 6,
+            url: '@Url.Action("AddToSession")' + "?name=" + name + "&avatar_url=" + avatar_url,
+        dataType: "json",
+        success: function(result) {
+
+        },
+        error: function(x, e) {
+
+        }
+        });
+
+    }
+</script>
